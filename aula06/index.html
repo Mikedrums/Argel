@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+	<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>ExtJS - 06</title>
+		<link rel="stylesheet" type="text/css" href="../extjs/resources/css/ext-all.css">
+		<script type="text/javascript" src="../extjs/ext-all.js"></script>
+	</head>
+
+	<body>
+		<div id="botao01"> </div>
+		<div id="botao02"> </div>
+		<div id="botao03"> </div>
+	</body>
+	
+	<script type="text/javascript">
+	
+		Ext.define('MeuBotao', {
+			extend: 'Ext.button.Button',
+			
+			initComponent: function() {
+				this.text = 'Meu Botão';
+				this.callParent();
+			}
+		});
+	
+		Ext.onReady(function(){
+			
+			Ext.create('MeuBotao',{
+				renderTo: 'botao01'
+			});
+
+			Ext.create('MeuBotao',{
+				renderTo: 'botao02'
+			});
+			
+			Ext.create('MeuBotao',{
+				renderTo: 'botao03'
+			});
+			
+		})
+	</script>
+	
+</html>
