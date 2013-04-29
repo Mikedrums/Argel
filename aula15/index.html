@@ -1,0 +1,59 @@
+<html>
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>extJS - Class 07</title>
+		<link rel="stylesheet" type="text/css" href="../extjs/resources/css/ext-all.css">
+		<script type="text/javascript" src="../extjs/ext-all.js"></script>
+	</head>
+
+	<body>
+
+		<div id="estadosBr">
+		</div>
+
+	</body>
+
+	<script type="text/javascript">
+
+		var estadosBrasileiros = [
+			[1,'Acre','AC'],
+			[2,'Alagoas','AL'],
+			[3,'Amapá','AP'],
+			[4,'Amazonas','AM'],
+			[5,'Bahia','BA'],
+			[6,'Ceará','CE'],
+			[7,'Distrito Federal','DF']
+		];
+
+		Ext.define('Estado', {
+			extend: 'Ext.data.Model',
+			fields: ['id','nome','sigla']
+		});
+
+		Ext.define('EstadoStore', {
+			extend: 'Ext.data.ArrayStore',
+			model: 'Estado',
+			data: estadosBrasileiros
+		});
+
+		Ext.onReady(function() {
+
+			var store = Ext.create('EstadoStore');
+
+			console.log(store.data.items);
+
+			var tpl = Ext.create('Ext.XTemplate', 
+					'<h1>Estados Brasileiros:</h1>',
+					'<tpl for=".">',
+					'<p>{data.nome} - {data.sigla}</p>',
+					'</tpl>'
+				);
+
+			tpl.overwrite('estadosBr', store.data.items);
+
+		});
+
+	</script>
+
+</html>
