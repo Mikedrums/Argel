@@ -1,0 +1,23 @@
+{
+	"id": 1,
+	"nome": "Alexandre",
+	"sobrenome": "Bonfá",
+	"telefones": [
+		{
+			"id": 12,
+			"ddd": "11",
+			"numero": "9900-0099"
+		},
+		{
+			"id": 13,
+			"ddd": "19",
+			"numero": "9900-1234"
+		},
+	],
+	"endereco": {
+		"id": 14,
+		"logradouro": "Rua A",
+		"numero": "100",
+		"complemento": "casa"
+	}
+}
