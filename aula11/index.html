@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+	<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>ExtJS - 11</title>
+		<link rel="stylesheet" type="text/css" href="../extjs/resources/css/ext-all.css">
+		<script type="text/javascript" src="../extjs/ext-all.js"></script>
+	</head>
+
+	<body>
+
+	</body>
+	
+	<script type="text/javascript">
+
+		Ext.define('Funcionario',{
+			extend: 'Ext.data.Model',
+
+			fields: [
+				{name: 'nome'},
+				{name: 'idade', type: 'int'}, // Ext.data.Types.INT
+				{name: 'salario', type: 'float'},
+				{name: 'ativo', type: 'boolean'},
+				{name: 'nasc', type: 'date', dateFormat: 'd/m/Y'},
+				{name: 'usuario', type: 'string'},
+				{name: 'email', type: 'string', convert: function(value, record) {
+					return record.get('usuario') + '@email.com';
+				}}
+			]
+		})
+
+		Ext.define('Contato', {
+			extend: 'Ext.data.Model',
+			fields: ['id,', 'nome', 'telefone']
+		})
+	
+		Ext.onReady(function(){
+			
+			var funcionario = Ext.create('Funcionario', {
+				nome: 'Ale',
+				idade: 38,
+				salario: 1000,
+				ativo: true,
+				nasc: '23/01/1975',
+				usuario: 'alebonfa'
+			});
+
+			// Forma complicada de criar o model:
+			/* var funcionario = Ext.ModelMgr.create({
+				nome: 'Ale',
+				idade: 38,
+				salario: 1000,
+				ativo: true,
+				nasc: '23/01/1975',
+				usuario: 'alebonfa'
+			}, 'Funcionario'); */
+
+			console.log(funcionario);
+
+			console.log(funcionario.get('nome'));
+			funcionario.set('idade', 20);
+			console.log(funcionario.get('idade'));
+
+			var contato = Ext.create('Contato',{
+				id: 1,
+				nome: 'Ale',
+				telefone: '19 9100-0098'
+			});
+			console.log(contato);
+			
+		})
+
+	</script>
+	
+</html>
