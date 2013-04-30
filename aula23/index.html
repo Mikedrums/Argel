@@ -1,0 +1,91 @@
+<html>
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>extJS - Class 13</title>
+		<link rel="stylesheet" type="text/css" href="../extjs/resources/css/ext-all.css">
+		<script type="text/javascript" src="../extjs/ext-all.js"></script>
+	</head>
+
+	<body>
+
+	</body>
+
+	<script type="text/javascript">
+
+		Ext.define('Contato', {
+			extend: 'Ext.data.Model',
+
+			fields: [
+				{name: 'id', type: 'int'},
+				{name: 'nome', type: 'string'},
+				{name: 'email', type: 'string'}
+			]
+
+		});
+
+		Ext.define('ContatosStore', {
+			extend: 'Ext.data.Store',
+
+			model: 'Contato',
+
+			proxy: {
+				type: 'jsonp',
+
+				// url: 'http://www.monthal.eng.br/loiane/listaContatos.php',
+
+				api: {
+					create: 'http://www.monthal.eng.br/loiane/criaContato.php',
+					read: 'http://www.monthal.eng.br/loiane/listaContatos.php',
+					update: 'http://www.monthal.eng.br/loiane/atualizaContato.php',
+					destroy: 'http://www.monthal.eng.br/loiane/deletaContato.php'
+				},
+
+				reader: {
+					type: 'json',
+					root: 'contatos'
+				},
+
+				writer: {
+					type: 'json',
+					root: 'contatos',
+					writeAllFields: true,
+					encode: true,
+					allowSingle: true
+				}
+
+
+			},
+
+			autoLoad: true,
+
+			autoSync: true
+
+		});
+
+		Ext.onReady(function(){
+
+			var store = Ext.create('ContatosStore');
+
+			store.on('load',function(s){
+				console.log(s.data);
+				
+				var contato = Ext.create('Contato', {
+					nome: 'Daniel Alvim Costa',
+					email: 'danprimo2003@hotmail.com'
+				});
+				
+				//s.add(contato);
+				//s.sync();
+
+				//var contatoAtualizado = s.getAt(0);
+				//contatoAtualizado.set('nome','Aqui Vai');
+
+				s.remove(s.getAt(8));
+
+			});
+
+		});
+	</script>
+
+</html>

@@ -1,0 +1,93 @@
+<html>
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>extJS - Class 13</title>
+		<link rel="stylesheet" type="text/css" href="../extjs/resources/css/ext-all.css">
+		<script type="text/javascript" src="../extjs/ext-all.js"></script>
+	</head>
+
+	<body>
+
+	</body>
+
+	<script type="text/javascript">
+
+		Ext.define('Contato', {
+			extend: 'Ext.data.Model',
+
+			fields: [
+				{name: 'id', type: 'int'},
+				{name: 'nome', type: 'string'},
+				{name: 'email', type: 'string'}
+			]
+
+		});
+
+		Ext.define('ContatosStore', {
+			extend: 'Ext.data.Store',
+
+			model: 'Contato',
+
+			proxy: {
+				type: 'ajax',
+
+				api: {
+					create: 'php/xml/criaContato.php',
+					read: 'php/xml/listaContatos.php',
+					update: 'php/xml/atualizaContato.php',
+					destroy: 'php/xml/deletaContato.php'
+				},
+				
+				reader: {
+					type: 'xml',
+					root: 'contatos',
+					record: 'contato'
+				},
+
+				writer: {
+					type: 'xml',
+					root: 'contatos',
+					record: 'contato',
+					writeAllFields: true,
+					encode: true
+				}
+
+			},
+
+			autoLoad: true,
+
+			autoSync: true
+
+		});
+
+		Ext.onReady(function(){
+
+			var store = Ext.create('ContatosStore');
+
+			// console.log(store.data);
+
+			store.on('load',function(s){
+				console.log(s.data);
+				
+				
+				var contato = Ext.create('Contato', {
+					nome: 'Luis Felipe Bonfa Cardoso',
+					email: 'lipetigre100@hotmail.com'
+				});
+				
+				
+				//s.add(contato);
+				//s.sync();
+
+				//var contatoAtualizado = s.getAt(3);
+				//contatoAtualizado.set('nome','Master of the World');
+
+				s.remove(s.getAt(5));
+
+			});
+
+		});
+	</script>
+
+</html>
