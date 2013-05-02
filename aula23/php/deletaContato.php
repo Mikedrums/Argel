@@ -3,8 +3,8 @@
 	include("conectar.php");
 
 	$callback = $_REQUEST['callback'];
-	$records = parse_str($_REQUEST['records'], $array);
-	$id = $array['id'];
+	$obj = json_decode($_REQUEST['records']);
+	$id = $obj->{'id'};
 
 	$query = sprintf("DELETE FROM Contato WHERE id = %d",
 		mysql_real_escape_string($id));

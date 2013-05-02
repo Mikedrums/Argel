@@ -3,11 +3,10 @@
 	include("conectar.php");
 
 	$callback = $_REQUEST['callback'];
-	$nome = $_REQUEST['contatos->nome'];
-	$email = $_REQUEST['contatos->email'];
-	$records = parse_str($_REQUEST['records'], $array);
-	$id = $array['id'];
-
+	$obj = json_decode($_REQUEST['records']);
+	$nome = $obj->{'nome'};
+	$email = $obj->{'email'};
+	$id = $obj->{'id'};
 
 	$query = sprintf("UPDATE Contato SET nome = '%s', email = '%s' WHERE id = %d",
 		mysql_real_escape_string($nome),

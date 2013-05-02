@@ -3,8 +3,9 @@
 	include("conectar.php");
 
 	$callback = $_REQUEST['callback'];
-	$nome = $_REQUEST['contatos->nome'];
-	$email = $_REQUEST['contatos->email'];
+	$obj = json_decode($_REQUEST['records']);
+	$nome = $obj->{'nome'};
+	$email = $obj->{'email'};
 
 	$query = sprintf("INSERT INTO Contato (nome, email) values ('%s', '%s')",
 		mysql_real_escape_string($nome),
