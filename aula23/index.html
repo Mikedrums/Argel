@@ -34,6 +34,8 @@
 
 				// url: 'http://www.monthal.eng.br/loiane/listaContatos.php',
 
+				recordParam: 'records',
+
 				api: {
 					create: 'http://www.monthal.eng.br/loiane/criaContato.php',
 					read: 'http://www.monthal.eng.br/loiane/listaContatos.php',
@@ -50,7 +52,7 @@
 					type: 'json',
 					root: 'contatos',
 					writeAllFields: true,
-					encode: true,
+					encode: false,
 					allowSingle: true
 				}
 
@@ -71,17 +73,19 @@
 				console.log(s.data);
 				
 				var contato = Ext.create('Contato', {
-					nome: 'Daniel Alvim Costa',
-					email: 'danprimo2003@hotmail.com'
+					nome: 'Gordinaldo',
+					email: 'gords@hotmail.com'
 				});
 				
 				//s.add(contato);
 				//s.sync();
 
-				//var contatoAtualizado = s.getAt(0);
-				//contatoAtualizado.set('nome','Aqui Vai');
+				var contatoAtualizado = s.getAt(2);
+				contatoAtualizado.set('nome','Gordinallldo Bonfa');
+				contatoAtualizado.set('email', 'babycoalhada@milk.com');
 
-				s.remove(s.getAt(8));
+				//s.remove(s.getAt(6))
+				//s.remove(s.getAt(8));
 
 			});
 
