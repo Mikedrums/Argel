@@ -1,16 +1,29 @@
-Ext.require('Ext.container.Viewport')/
+Ext.Loader.setConfig({enabled: true});
+
+Ext.require('Ext.container.Viewport');
 
 Ext.application({
-	name: 'App',
-	appFolder: 'app',
-	controllers: ['Books'],
-	launch: function() {
-		console.log('called function launch - application');
-		Ext.create('Ext.container.Viewport', {
-			layout: 'fit',
-			items: [{
-				xtype: 'bookList'
-			}]
-		});
-	}
+    name: 'App',
+
+    appFolder: 'app',
+    
+    controllers: ['Books'],
+
+    launch: function() {
+    	
+        Ext.create('Ext.container.Viewport', {
+            layout: 'border',
+            items: [
+                {
+                    xtype: 'bookList',
+                    region: 'center'
+                },
+                {
+                    xtype: 'detailPanel',
+                    region: 'south',
+                    height: 150
+                }
+            ]
+        });
+    }
 });
